@@ -26,6 +26,16 @@
 		8AED4B512447911500ED2706 /* CrashReporter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AED4B4F2447911500ED2706 /* CrashReporter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8AED4B582447921400ED2706 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8AED4B3A2447907A00ED2706 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AED4B532447917500ED2706;
+			remoteInfo = CrashReporter;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8AED4B522447911500ED2706 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -120,6 +130,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				8AED4B592447921400ED2706 /* PBXTargetDependency */,
 			);
 			name = SwiftyCrashReporter;
 			productName = SwiftyCrashReporter;
@@ -201,6 +212,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8AED4B592447921400ED2706 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AED4B532447917500ED2706 /* CrashReporter */;
+			targetProxy = 8AED4B582447921400ED2706 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8AED4B492447907A00ED2706 /* Debug */ = {
