@@ -6,6 +6,20 @@
 	objectVersion = 50;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		8AED4B532447917500ED2706 /* CrashReporter */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8AED4B542447917500ED2706 /* Build configuration list for PBXAggregateTarget "CrashReporter" */;
+			buildPhases = (
+				8AED4B572447918200ED2706 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = CrashReporter;
+			productName = CrashReporter;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8AED4B482447907A00ED2706 /* SwiftyCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AED4B462447907A00ED2706 /* SwiftyCrashReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8AED4B502447911500ED2706 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AED4B4F2447911500ED2706 /* CrashReporter.framework */; };
@@ -124,6 +138,9 @@
 					8AED4B422447907A00ED2706 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
+					8AED4B532447917500ED2706 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 8AED4B3D2447907A00ED2706 /* Build configuration list for PBXProject "SwiftyCrashReporter" */;
@@ -140,6 +157,7 @@
 			projectRoot = "";
 			targets = (
 				8AED4B422447907A00ED2706 /* SwiftyCrashReporter */,
+				8AED4B532447917500ED2706 /* CrashReporter */,
 			);
 		};
 /* End PBXProject section */
@@ -153,6 +171,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8AED4B572447918200ED2706 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -d \"${BUILT_PRODUCTS_DIR}/CrashReporter\" ]; then\necho \"${BUILT_PRODUCTS_DIR}/CrashReporter directory already exists, so skipping the rest of the script.\"\nexit 0\nfi\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/CrashReporter\"\ncat <<EOF > \"${BUILT_PRODUCTS_DIR}/CrashReporter/module.modulemap\"\nmodule CrashReporter {\n    header \"${PROJECT_DIR}/CrashReporter.framework/Headers/CrashReporter.h\"\n    export *\n}\nEOF\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8AED4B3F2447907A00ED2706 /* Sources */ = {
@@ -343,6 +381,24 @@
 			};
 			name = Release;
 		};
+		8AED4B552447917500ED2706 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6V66CC3AN6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8AED4B562447917500ED2706 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6V66CC3AN6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -360,6 +416,15 @@
 			buildConfigurations = (
 				8AED4B4C2447907A00ED2706 /* Debug */,
 				8AED4B4D2447907A00ED2706 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8AED4B542447917500ED2706 /* Build configuration list for PBXAggregateTarget "CrashReporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AED4B552447917500ED2706 /* Debug */,
+				8AED4B562447917500ED2706 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
