@@ -24,6 +24,7 @@
 		8AED4B482447907A00ED2706 /* SwiftyCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 8AED4B462447907A00ED2706 /* SwiftyCrashReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8AED4B502447911500ED2706 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AED4B4F2447911500ED2706 /* CrashReporter.framework */; };
 		8AED4B512447911500ED2706 /* CrashReporter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8AED4B4F2447911500ED2706 /* CrashReporter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8AED4B5B2447929000ED2706 /* SwiftyCrashReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AED4B5A2447929000ED2706 /* SwiftyCrashReporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		8AED4B462447907A00ED2706 /* SwiftyCrashReporter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyCrashReporter.h; sourceTree = "<group>"; };
 		8AED4B472447907A00ED2706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8AED4B4F2447911500ED2706 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CrashReporter.framework; sourceTree = "<group>"; };
+		8AED4B5A2447929000ED2706 /* SwiftyCrashReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCrashReporter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			children = (
 				8AED4B462447907A00ED2706 /* SwiftyCrashReporter.h */,
 				8AED4B472447907A00ED2706 /* Info.plist */,
+				8AED4B5A2447929000ED2706 /* SwiftyCrashReporter.swift */,
 			);
 			path = SwiftyCrashReporter;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					8AED4B422447907A00ED2706 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 					8AED4B532447917500ED2706 = {
 						CreatedOnToolsVersion = 11.3.1;
@@ -208,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AED4B5B2447929000ED2706 /* SwiftyCrashReporter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +350,7 @@
 		8AED4B4C2447907A00ED2706 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6V66CC3AN6;
@@ -366,6 +372,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -374,6 +381,7 @@
 		8AED4B4D2447907A00ED2706 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6V66CC3AN6;
