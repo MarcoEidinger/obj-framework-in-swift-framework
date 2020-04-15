@@ -18,6 +18,17 @@
 			name = CrashReporter;
 			productName = CrashReporter;
 		};
+		8AED4B6A2447983200ED2706 /* UniversalSwiftyCrashReporter */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 8AED4B6D2447983200ED2706 /* Build configuration list for PBXAggregateTarget "UniversalSwiftyCrashReporter" */;
+			buildPhases = (
+				8AED4B6E2447983600ED2706 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = UniversalSwiftyCrashReporter;
+			productName = UniversalSwiftyCrashReporter;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -156,6 +167,9 @@
 					8AED4B532447917500ED2706 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
+					8AED4B6A2447983200ED2706 = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 8AED4B3D2447907A00ED2706 /* Build configuration list for PBXProject "SwiftyCrashReporter" */;
@@ -173,6 +187,7 @@
 			targets = (
 				8AED4B422447907A00ED2706 /* SwiftyCrashReporter */,
 				8AED4B532447917500ED2706 /* CrashReporter */,
+				8AED4B6A2447983200ED2706 /* UniversalSwiftyCrashReporter */,
 			);
 		};
 /* End PBXProject section */
@@ -204,6 +219,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ -d \"${BUILT_PRODUCTS_DIR}/CrashReporter\" ]; then\necho \"${BUILT_PRODUCTS_DIR}/CrashReporter directory already exists, so skipping the rest of the script.\"\nexit 0\nfi\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/CrashReporter\"\ncat <<EOF > \"${BUILT_PRODUCTS_DIR}/CrashReporter/module.modulemap\"\nmodule CrashReporter {\n    header \"${PROJECT_DIR}/CrashReporter.framework/Headers/CrashReporter.h\"\n    export *\n}\nEOF\n";
+		};
+		8AED4B6E2447983600ED2706 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"SwiftyCrashReporter\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"SwiftyCrashReporter\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/SwiftyCrashReporter.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/SwiftyCrashReporter.framework/Modules/SwiftyCrashReporter.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/SwiftyCrashReporter.framework/Modules/SwiftyCrashReporter.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/SwiftyCrashReporter.framework/SwiftyCrashReporter\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/SwiftyCrashReporter.framework/SwiftyCrashReporter\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/SwiftyCrashReporter.framework/SwiftyCrashReporter\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/SwiftyCrashReporter.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -426,6 +458,24 @@
 			};
 			name = Release;
 		};
+		8AED4B6B2447983200ED2706 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6V66CC3AN6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8AED4B6C2447983200ED2706 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6V66CC3AN6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -452,6 +502,15 @@
 			buildConfigurations = (
 				8AED4B552447917500ED2706 /* Debug */,
 				8AED4B562447917500ED2706 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8AED4B6D2447983200ED2706 /* Build configuration list for PBXAggregateTarget "UniversalSwiftyCrashReporter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AED4B6B2447983200ED2706 /* Debug */,
+				8AED4B6C2447983200ED2706 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
